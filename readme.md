@@ -51,6 +51,7 @@ curl -s -X POST "${API_URL}/auth/register" \
 "password": "'"${TEST_PASSWORD}"'"
 }' $JSON_PRETTY_PRINT
 ```
+<img width="767" height="121" alt="изображение" src="https://github.com/user-attachments/assets/e2b55232-8153-4e20-bb39-74246b916321" />
 
 
 ### 2. Попытка повторной регистрации
@@ -65,6 +66,7 @@ curl -s -X POST "${API_URL}/auth/register" \
 "password": "anotherpassword"
 }' $JSON_PRETTY_PRINT
 ```
+<img width="920" height="132" alt="изображение" src="https://github.com/user-attachments/assets/bdee5ec6-f055-407b-ac06-69f4fdd14af1" />
 
 
 ### 3. Вход пользователя (логин)
@@ -79,7 +81,7 @@ export AUTH_TOKEN=$(curl -s -X POST "${API_URL}/auth/login" \
 }' | jq -r .token | tr -d '\n')
 echo "Токен получен: $AUTH_TOKEN"
 ```
-
+<img width="919" height="145" alt="изображение" src="https://github.com/user-attachments/assets/3a112208-22f3-4a11-917e-779dee49749b" />
 
 ## Шаг 3: Доступ к защищенным ресурсам
 ### 4. Доступ к профилю без токена
@@ -87,18 +89,15 @@ echo "Токен получен: $AUTH_TOKEN"
 ```bash
 curl -s -i -X GET "${API_URL}/users/profile"
 ```
-
+<img width="724" height="228" alt="изображение" src="https://github.com/user-attachments/assets/4719861e-7787-4f9e-ac54-69e768be01cf" />
 
 ### 5. Доступ к профилю с валидным токеном
 - **Команда:**
 ```bash
-
 curl -s -X GET "${API_URL}/users/profile" \
-
 -H "Authorization: Bearer ${AUTH_TOKEN}" $JSON_PRETTY_PRINT
-
 ```
-
+<img width="901" height="62" alt="изображение" src="https://github.com/user-attachments/assets/3e84a225-6367-4ab6-a55c-3f122e7f665b" />
 
 ---
 
@@ -119,6 +118,7 @@ export ORDER_ID=$(curl -s -X POST "${API_URL}/orders" \
 }' | jq -r .id)
 echo "ID созданного заказа: $ORDER_ID"
 ```
+<img width="598" height="181" alt="изображение" src="https://github.com/user-attachments/assets/809524e2-f1b4-45fc-acb6-7030cfa2ce86" />
 
 ### 7. Получение списка заказов
 - **Описание:** Получает все заказы для текущего пользователя.
@@ -127,6 +127,8 @@ echo "ID созданного заказа: $ORDER_ID"
 curl -s -X GET "${API_URL}/orders" \
 -H "Authorization: Bearer ${AUTH_TOKEN}" $JSON_PRETTY_PRINT
 ```
+<img width="917" height="73" alt="изображение" src="https://github.com/user-attachments/assets/87e92d9e-cb5d-4592-886c-abf27eae35f1" />
+
 ### 8. Получение конкретного заказа по ID
 - **Описание:** Получает созданный ранее заказ, используя захваченный `ORDER_ID`.
 - **Команда:**
@@ -134,6 +136,8 @@ curl -s -X GET "${API_URL}/orders" \
 curl -s -X GET "${API_URL}/orders/${ORDER_ID}" \
 -H "Authorization: Bearer ${AUTH_TOKEN}" $JSON_PRETTY_PRINT
 ```
+<img width="910" height="70" alt="изображение" src="https://github.com/user-attachments/assets/8dbb0f4b-f9b5-4cf3-913b-c473ce003bce" />
+
 ### 9. Попытка получения чужого заказа
 - **Описание:** Пытается получить заказ, используя случайный UUID.
 - **Команда:**
@@ -141,3 +145,4 @@ curl -s -X GET "${API_URL}/orders/${ORDER_ID}" \
 curl -s -i -X GET "${API_URL}/orders/$(uuidgen)" \
 -H "Authorization: Bearer ${AUTH_TOKEN}"
 ```
+<img width="721" height="224" alt="изображение" src="https://github.com/user-attachments/assets/7e5bd318-9bff-4bc2-840b-6df12be16427" />
